@@ -14,7 +14,11 @@ public class Day1List {
         ArrayList<ArrayList<Integer>> list = day1.loadFile();
         day1.orderLists(list);
         int difference = day1.calculatediffernce(list);
-        System.out.println(difference);
+        System.out.println("Difference: " + difference);
+
+        int similarity = day1.calculateSimilartiy(list);
+        System.out.println("Similarity: " + similarity);
+
 
     }
     public ArrayList<ArrayList<Integer>> loadFile() throws IOException {
@@ -57,5 +61,16 @@ public class Day1List {
 
         }
         return difference;
+    }
+
+    public int calculateSimilartiy(ArrayList<ArrayList<Integer>> list){
+        int similarity = 0;
+        for (int i =0;i<list.get(0).size();i++){
+            int occurrences = Collections.frequency(list.get(1),list.get(0).get(i));
+            similarity += occurrences * list.get(0).get(i);
+        }
+
+
+        return similarity;
     }
 }
